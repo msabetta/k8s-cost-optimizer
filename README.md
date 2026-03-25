@@ -25,29 +25,29 @@ Kubernetes Cluster
 
 Diagramma semplificato che mostra come i componenti interagiscono:
 
-                     +-----------------------+
-                     |   Kubernetes Cluster   |
-                     |  (Pods, Nodes, cAdvisor)|
-                     +-----------+-----------+
-                                 |
-                                 v
-                      +----------v-----------+
-                      |     Prometheus       |
-                      | (metrics store + API)|
-                      +----------+-----------+
-                                 |
-                                 |
-                                 v
-      +----------------+    +--------------------+
-      |  API Server    |    | Frontend (React)   |
-      |(Go / REST API) |<-->| (Dashboard UI)     |
-      +------+---------+    +--------------------+
-             |
-             v
-   +--------------------------+
-   | Cost & Forecast Engine   |
-   | (rightsizing, anomalies) |
-   +--------------------------+
+                     +-------------------------+ <br>
+                     |   Kubernetes Cluster    | <br>
+                     |  (Pods, Nodes, cAdvisor)| <br>
+                     +-----------+-------------+ <br>
+                                 | <br>
+                                 v <br>
+                      +----------v-----------+ <br>
+                      |     Prometheus       | <br>
+                      | (metrics store + API)| <br>
+                      +----------+-----------+ <br>
+                                 | <br>
+                                 | <br>
+                                 v <br>
+      +----------------+    +--------------------+ <br>
+      |  API Server    |    | Frontend (React)   | <br>
+      |(Go / REST API) |<-->| (Dashboard UI)     | <br>
+      +------+---------+    +--------------------+ <br>
+             | <br>
+             v <br>
+   +--------------------------+ <br>
+   | Cost & Forecast Engine   | <br>
+   | (rightsizing, anomalies) | <br>
+   +--------------------------+ <br>
 
 
 
@@ -57,17 +57,17 @@ Diagramma semplificato che mostra come i componenti interagiscono:
 
 ## 🔄 Dettaglio del Flusso dei Dati
 
-+------------++----------------+ +-----------------------------+
-| Prometheus ||     Cost Algorithms    || Anomaly/Forecasting  |
-| (metrics)  |---> | (CPU/Memory cost) | ----> |     Engine    |
-+------------++----------------+ +-----------------------------+
-                  ||
-                  ||
-                  VV
-+-----------------++-------------------+
-| Collector       || API Response JSON |
-| (parse & fetch) || (cost / forecast) |
-+-----------------++-------------------+
++------------++----------------+ +-----------------------------+ <br>
+| Prometheus ||     Cost Algorithms    || Anomaly/Forecasting  | <br>
+| (metrics)  |---> | (CPU/Memory cost) | ----> |     Engine    | <br>
++------------++----------------+ +-----------------------------+ <br>
+                  ||  <br>
+                  ||  <br>
+                  VV  <br>
++-----------------++-------------------+ <br>
+| Collector       || API Response JSON | <br>
+| (parse & fetch) || (cost / forecast) | <br>
++-----------------++-------------------+ <br>
 
 ---
 
@@ -100,23 +100,23 @@ Un diagramma di flusso rappresenta una sequenza di passaggi o flussi all’inter
 ---
 
 ## 🏷 Componenti chiave
-+------------------------+
-| API Endpoints          |
-| - /health              |
-| - /costs               |
-| - /summary             |
-| - /forecast            |
-| - /recommendations     |
-+------------------------+
-           |
-           v
-+------------------------+
-| Internal Modules       |
-| - collector            |
-| - cost                 |
-| - forecasting          |
-| - optimizer            |
-+------------------------+
++------------------------+ <br>
+| API Endpoints          | <br>
+| - /health              | <br>
+| - /costs               | <br>
+| - /summary             | <br>
+| - /forecast            | <br>
+| - /recommendations     | <br>
++------------------------+ <br>
+           | <br>
+           v <br>
++------------------------+ <br>
+| Internal Modules       | <br>
+| - collector            | <br>
+| - cost                 | <br>
+| - forecasting          | <br>
+| - optimizer            | <br>
++------------------------+ <br>
 
 
 ---
