@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-cost-optimizer
+  labels:
+    app: k8s-cost-optimizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-cost-optimizer
+  template:
+    metadata:
+      labels:
+        app: k8s-cost-optimizer
+    spec:
+      serviceAccountName: k8s-cost-optimizer
+      containers:
+        - name: k8s-cost-optimizer
+          image: your-dockerhub-user/k8s-cost-optimizer:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: k8s-cost-optimizer-config

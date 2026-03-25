@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8s-cost-optimizer.fullname" . }}
+  labels:
+    app: {{ include "k8s-cost-optimizer.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "k8s-cost-optimizer.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "k8s-cost-optimizer.name" . }}
+    spec:
+      serviceAccountName: {{ include "k8s-cost-optimizer.fullname" . }}
+      containers:
+        - name: {{ include "k8s-cost-optimizer.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "k8s-cost-optimizer.fullname" . }}-config

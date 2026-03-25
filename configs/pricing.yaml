@@ -1,0 +1,4 @@
+cpu:
+  price_per_core: 0.05   # € per core/ora
+memory:
+  price_per_gb: 0.01     # € per GB/ora

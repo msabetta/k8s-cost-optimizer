@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-cost-optimizer
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: k8s-cost-optimizer.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-cost-optimizer
+                port:
+                  number: 8080

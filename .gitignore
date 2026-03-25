@@ -1,0 +1,73 @@
+.vscode
+.zencoder
+.zenflow
+.env
+
+# ==========================
+# Go specific
+# ==========================
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build directories
+/bin/
+/build/
+/dist/
+
+# Dependency directories
+/vendor/
+
+# Go modules
+go.sum
+go.mod
+
+# IDE/editor files
+*.swp
+*.swo
+*.vscode/
+.idea/
+
+# ==========================
+# Kubernetes
+# ==========================
+# kubeconfig files
+.kube/
+.kubeconfig
+.kustomize-cache/
+*.kube.yaml
+
+# Helm
+charts/
+helm-charts/
+*.tgz
+
+# ==========================
+# Prometheus
+# ==========================
+# Local Prometheus data (if running locally)
+data/
+*.prom
+
+# ==========================
+# YAML / JSON / Configs
+# ==========================
+# Ignore environment-specific config files
+*.local.yaml
+*.secret.yaml
+*.env.yaml
+*.json.bak
+*.tmp
+
+# ==========================
+# Logs & temp files
+# ==========================
+*.log
+*.tmp
+*.swp
+*.bak

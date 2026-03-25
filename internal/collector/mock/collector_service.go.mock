@@ -1,0 +1,48 @@
+package collector
+
+
+//Mock iniziale
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func FetchMetrics() []ContainerMetrics {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	metrics := []ContainerMetrics{
+		{
+			Name:            "api-service",
+			Namespace:       "default",
+			Pod:             "api-pod-1",
+			CPUUsage:        randomFloat(0.05, 0.4),
+			CPURequest:      0.5,
+			MemoryUsageMB:   randomFloat(50, 200),
+			MemoryRequestMB: 512,
+		},
+		{
+			Name:            "worker-service",
+			Namespace:       "default",
+			Pod:             "worker-pod-1",
+			CPUUsage:        randomFloat(0.1, 0.7),
+			CPURequest:      1.0,
+			MemoryUsageMB:   randomFloat(100, 600),
+			MemoryRequestMB: 1024,
+		},
+	}
+
+	// 👀 Stampa le metriche generate per debug
+	fmt.Println("Fetched metrics:")
+	for _, m := range metrics {
+		fmt.Printf("Container: %s, CPUUsage: %.2f, CPURequest: %.2f, MemoryUsageMB: %.2f, MemoryRequestMB: %.2f\n",
+			m.Name, m.CPUUsage, m.CPURequest, m.MemoryUsageMB, m.MemoryRequestMB)
+	}
+
+	return metrics
+}
+
+// helper
+func randomFloat(min, max float64) float64 {
+	return min + rand.Float64()*(max-min)
+}
